@@ -14,7 +14,7 @@ connectBD();
 app.use(express.json());
 app.use(cors({
      origin: [
-        " http://localhost:5173", //url _react
+        "http://localhost:5173", //url _react
         "https://front-node-self.vercel.app" // url_vercel
      ]
     }));
