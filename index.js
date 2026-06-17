@@ -12,7 +12,12 @@ const app = express();
 connectBD();
 //accepter les donnees sous format json
 app.use(express.json());
-app.use(cors({ origin: "*"}));
+app.use(cors({
+     origin: [
+        " http://localhost:5173/", //url _react
+        "https://front-node-self.vercel.app" // url_vercel
+     ]
+    }));
     
 const PORT = process.env.PORT ;
 app.listen( PORT , () => {
