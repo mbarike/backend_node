@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors')
 const connectBD = require("./config/db");
 const userRoute = require('./routes/user.route')
+const questionRoute = require('./routes/question.route');
 
 //appeller la fonction dotenv pour utiliser les variables d'environnement
 dotenv.config();
