@@ -26,10 +26,11 @@ app.listen( PORT , () => {
 })
 
 
-// Route de test
-
+//  -----------------------les Routes-----------------------
+//inscription et connexion
+app.use("/api/auth",userRoute);
+// routes pour les questions
+app.use("/api/question",questionRoute);
 app.get('/', (req , res) => {
     res.send('Bienvenue sur mon serveur express')
 })
-
-app.use("/api/auth",userRoute);
