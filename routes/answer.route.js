@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const ctrl = require("../controllers/answer.controller");
-const auth = require("../middleware/auth.middleware");
 
-router.post("/:questionId", auth, ctrl.createAnswer);
-router.get("/:questionId", ctrl.getAnswers);
+const {
+  createAnswer,
+  getAnswersByQuestion,
+} = require("../controller/answer.controller");
+
+// ajouter réponse
+router.post("/", createAnswer);
+
+// récupérer réponses d’une question
+router.get("/:questionId", getAnswersByQuestion);
 
 module.exports = router;

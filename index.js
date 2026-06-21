@@ -4,6 +4,7 @@ const cors = require('cors')
 const connectBD = require("./config/db");
 const userRoute = require('./routes/user.route')
 const questionRoute = require('./routes/question.route');
+const answerRoute = require("./routes/answer.route");
 
 //appeller la fonction dotenv pour utiliser les variables d'environnement
 dotenv.config();
@@ -31,6 +32,8 @@ app.listen( PORT , () => {
 app.use("/api/auth",userRoute);
 // routes pour les questions
 app.use("/api/question",questionRoute);
+// routes pour les reponses
+app.use("/api/answer", answerRoute);
 app.get('/', (req , res) => {
     res.send('Bienvenue sur mon serveur express')
 })
