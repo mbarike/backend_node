@@ -30,6 +30,26 @@ const answerSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    // commentaires
+    comments: [
+  {
+    auteur: String,
+    contenu: String,
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+],
+likes: {
+  type: Number,
+  default: 0,
+},
+
+dislikes: {
+  type: Number,
+  default: 0,
+},
   },
   { timestamps: true }
 );
