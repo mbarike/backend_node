@@ -36,11 +36,7 @@ const questionSchema = new mongoose.Schema(
       default: 0,
     },
 
-    userId: {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: "User",
-  required: true,
-},
+   
   },
   {
     timestamps: true,

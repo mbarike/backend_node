@@ -11,16 +11,9 @@ const createAnswer = async (req, res) => {
       questionId,
     });
 
-    res.status(201).json({
-      success: true,
-      message: "Réponse ajoutée avec succès",
-      answer,
-    });
+    res.status(201).json(answer);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -31,107 +24,61 @@ const getAnswersByQuestion = async (req, res) => {
       questionId: req.params.questionId,
     }).sort({ createdAt: -1 });
 
-    res.status(200).json({
-      success: true,
-      answers,
-    });
+    res.status(200).json(answers);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// 👍 like réponse
+// 👍 like
 const likeAnswer = async (req, res) => {
   try {
     const answer = await Answer.findById(req.params.id);
 
-    if (!answer) {
-      return res.status(404).json({
-        success: false,
-        message: "Réponse introuvable",
-      });
-    }
-
-    answer.likes = (answer.likes || 0) + 1;
-
+    answer.likes++;
     await answer.save();
 
-    res.status(200).json({
-      success: true,
-      message: "Like ajouté",
-      answer,
-    });
+    res.json(answer);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// 👎 dislike réponse
+// 👎 dislike
 const dislikeAnswer = async (req, res) => {
   try {
     const answer = await Answer.findById(req.params.id);
 
-    if (!answer) {
-      return res.status(404).json({
-        success: false,
-        message: "Réponse introuvable",
-      });
-    }
-
-    answer.dislikes = (answer.dislikes || 0) + 1;
-
+    answer.dislikes++;
     await answer.save();
 
-    res.status(200).json({
-      success: true,
-      message: "Dislike ajouté",
-      answer,
-    });
+    res.json(answer);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 
-// 💬 ajouter commentaire
+// 💬 ajouter commentaire (CORRIGÉ)
 const addComment = async (req, res) => {
   try {
-    const { answerId, auteur, contenu } = req.body;
+    const { contenu, auteur } = req.body;
 
-    const answer = await Answer.findById(answerId);
+    const answer = await Answer.findById(req.params.id);
 
     if (!answer) {
-      return res.status(404).json({
-        success: false,
-        message: "Réponse introuvable",
-      });
+      return res.status(404).json({ message: "Réponse introuvable" });
     }
 
     answer.comments.push({
-      auteur,
       contenu,
+      auteur,
     });
 
     await answer.save();
 
-    res.status(200).json({
-      success: true,
-      message: "Commentaire ajouté",
-      answer,
-    });
+    res.json(answer);
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 

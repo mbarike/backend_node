@@ -9,7 +9,7 @@ const createQuestion = async (req, res) => {
       titre,
       description,
       tags,
-      auteur,
+      auteur : "mbarike",
     });
 
     res.status(201).json({

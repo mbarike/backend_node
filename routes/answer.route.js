@@ -9,19 +9,13 @@ const {
   addComment,
 } = require("../controller/answer.controller");
 
-// ➕ ajouter réponse
 router.post("/", createAnswer);
-
-// 📥 réponses par question
 router.get("/:questionId", getAnswersByQuestion);
 
-// 👍 like
 router.put("/like/:id", likeAnswer);
-
-// 👎 dislike
 router.put("/dislike/:id", dislikeAnswer);
 
-// 💬 commentaire
-router.post("/comment", addComment);
+// ✅ commentaire avec ID dans URL
+router.post("/comment/:id", addComment);
 
 module.exports = router;
