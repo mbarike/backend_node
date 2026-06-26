@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(cors({
      origin: [
         "http://localhost:5173", //url _react
-        "https://front-node-self.vercel.app" // url_vercel
+       // "https://front-node-self.vercel.app" // url_vercel
+        "https://front-end-li9y.vercel.app/"
      ]
     }));
     
