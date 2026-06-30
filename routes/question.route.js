@@ -9,11 +9,15 @@ const {
   deleteQuestion,
 } = require("../controller/question.controller");
 
-// ✅ routes propres (sans /question)
-router.post("/", createQuestion);
+const userMiddleware = require("../middlewares/user.middleware");
+
+// 🔥 sécurisé (user connecté obligatoire)
+router.post("/", userMiddleware, createQuestion);
+router.put("/:id", userMiddleware, updateQuestion);
+router.delete("/:id", userMiddleware, deleteQuestion);
+
+// public
 router.get("/", getQuestions);
 router.get("/:id", getQuestionById);
-router.put("/:id", updateQuestion);
-router.delete("/:id", deleteQuestion);
 
 module.exports = router;
