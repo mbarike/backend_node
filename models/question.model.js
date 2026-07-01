@@ -12,7 +12,7 @@ const questionSchema = new mongoose.Schema(
       required: [true, "La description est obligatoire"],
     },
 
-    // ❌ on remplace categorie par tags (plus moderne)
+   
     tags: [
       {
         type: String,
@@ -25,7 +25,7 @@ const questionSchema = new mongoose.Schema(
       default: "Anonyme",
     },
 
-    // ✅ nouveaux champs
+   
     votes: {
       type: Number,
       default: 0,
