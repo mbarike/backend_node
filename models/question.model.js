@@ -21,8 +21,10 @@ const questionSchema = new mongoose.Schema(
     ],
 
     auteur: {
-      type: String,
-      default: "Anonyme",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+     
     },
 
    
