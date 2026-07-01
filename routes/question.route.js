@@ -9,9 +9,8 @@ const {
   deleteQuestion,
 } = require("../controller/question.controller");
 
-const auth = require("../middlewares/user.middleware");
 // ✅ routes propres (sans /question)
-router.post("/",auth, createQuestion);
+router.post("/", createQuestion);
 router.get("/", getQuestions);
 router.get("/:id", getQuestionById);
 router.put("/:id", updateQuestion);

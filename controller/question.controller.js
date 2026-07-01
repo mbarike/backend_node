@@ -8,8 +8,8 @@ const createQuestion = async (req, res) => {
     const question = await Question.create({
       titre,
       description,
-      tags :tags || [],
-      auteur : req.user.id
+      tags,
+      auteur : "mbarike",
     });
 
     res.status(201).json({
